@@ -1,0 +1,8 @@
+Added movie: The Dark Knight, Rank: 2
+Added movie: Inception, Rank: 1
+Added movie: Interstellar, Rank: 3
+
+Movies ranked successfully!
+Title: Inception, Rank: 1
+Title: The Dark Knight, Rank: 2
+Title: Interstellar, Rank: 3

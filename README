@@ -1,0 +1,64 @@
+# Movie Ranker Microservice
+
+## Overview
+This is a simple microservice that allows users to input movies, rank them on a scale of 1-5, and then fetch the movies in order of their rankings.
+
+The service is built using Flask (Python) and communicates via HTTP requests. It stores movie data in a text file (`movies_input.txt`), allowing both movie data input and ranking to persist.
+
+## Communication Contract
+
+### Endpoints:
+1. **POST `/add_movie`**:
+   - **Description**: Adds a movie to the list.
+   - **Request Body**:
+     ```json
+     {
+       "title": "Movie Title"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "message": "Movie 'Movie Title' added successfully."
+     }
+     ```
+
+2. **POST `/rank_movies`**:
+   - **Description**: Allows the user to rank movies. The ranking is randomly generated for demo purposes, but you can replace it with user input.
+   - **Request Body**: None
+   - **Response**:
+     ```json
+     {
+       "message": "Movies ranked successfully!"
+     }
+     ```
+
+3. **GET `/get_ranked_movies`**:
+   - **Description**: Retrieves the list of movies, sorted by their rank.
+   - **Response**:
+     ```json
+     [
+       {"title": "Movie Title 1", "rank": 5},
+       {"title": "Movie Title 2", "rank": 4},
+       {"title": "Movie Title 3", "rank": 3}
+     ]
+     ```
+
+## Example Code for Requesting Data:
+
+### Request Data (using `requests` in Python):
+
+```python
+import requests
+
+# Adding a movie
+response = requests.post("http://localhost:5000/add_movie", json={"title": "Inception"})
+print(response.json())
+
+# Ranking the movies
+response = requests.post("http://localhost:5000/rank_movies")
+print(response.json())
+
+# Fetching ranked movies
+response = requests.get("http://localhost:5000/get_ranked_movies")
+print(response.json())
