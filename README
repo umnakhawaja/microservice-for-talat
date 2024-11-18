@@ -1,9 +1,11 @@
 # Movie Ranker Microservice
 
 ## Overview
-This is a simple microservice that allows users to input movies, rank them on a scale of 1-5, and then fetch the movies in order of their rankings.
+This is a simple microservice that allows users to input movies, rank them on a scale of 1-5, and 
+then fetch the movies in order of their rankings.
 
-The service is built using Flask (Python) and communicates via HTTP requests. It stores movie data in a text file (`movies_input.txt`), allowing both movie data input and ranking to persist.
+The service is built using Flask (Python) and communicates via HTTP requests. It stores movie data 
+in a text file (`movies_input.txt`), allowing both movie data input and ranking to persist.
 
 ## Communication Contract
 
@@ -24,7 +26,9 @@ The service is built using Flask (Python) and communicates via HTTP requests. It
      ```
 
 2. **POST `/rank_movies`**:
-   - **Description**: Allows the user to rank movies. The ranking is randomly generated for demo purposes, but you can replace it with user input.
+   - **Description**: Allows the user to rank movies. The ranking is randomly generated for demo 
+   purposes, but you can replace it with user input.
+
    - **Request Body**: None
    - **Response**:
      ```json
@@ -44,7 +48,38 @@ The service is built using Flask (Python) and communicates via HTTP requests. It
      ]
      ```
 
+### UML Diagram:
++------------------+              +--------------------+              +-------------------+
+|   User Program   |              |  Movie Ranker API  |              |    Movie Service  |
++------------------+              +--------------------+              +-------------------+
+        |                                  |                                |
+        |       POST /add_movie            |                                |
+        |--------------------------------->|                                |
+        |                                  |  Add movie to the list          |
+        |                                  |------------------------------->|
+        |                                  |         Movie added            |
+        |                                  |<-------------------------------|
+        |                                  |                                |
+        |       POST /rank_movies          |                                |
+        |--------------------------------->|                                |
+        |                                  |     Rank the movies            |
+        |                                  |------------------------------->|
+        |                                  |        Movies ranked           |
+        |                                  |<-------------------------------|
+        |                                  |                                |
+        |       GET /get_ranked_movies     |                                |
+        |--------------------------------->|                                |
+        |                                  |   Retrieve ranked movies       |
+        |                                  |------------------------------->|
+        |                                  |    Return ranked movies        |
+        |                                  |<-------------------------------|
+        |       Receive ranked movies      |                                |
+        |<---------------------------------|                                |
+        |                                  |                                |
++------------------+              +--------------------+              +-------------------+
+
 ## Example Code for Requesting Data:
+## 
 
 ### Request Data (using `requests` in Python):
 
